@@ -14,7 +14,9 @@ module Ruboty
         private
         def oruka
           if (result = scan).value?(true)
-            header + " " + result.keys.join("、") + " がいます(｀･ω･´)"
+            header + "\n" +
+              result.keep_if { |k, v| v }.keys.join("\n") +
+              "がいます(｀･ω･´)"
           else
             header + "誰もいません(´･ω･｀)"
           end
