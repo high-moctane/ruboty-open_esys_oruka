@@ -23,7 +23,8 @@ module Ruboty
         end
 
         def conf
-          YAML.load_file(ENV["OPENESYS_ORUKA_CONF"])
+          path = File.expand_path(ENV["OPENESYS_ORUKA_CONF"])
+          YAML.load_file(path)
         end
 
         def header
