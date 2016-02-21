@@ -16,7 +16,7 @@ module Ruboty
           if (result = scan(conf)).value?(true)
             header + "\n" +
               result.keep_if { |k, v| v }.keys.join("\n") +
-              "がいます(｀･ω･´)"
+              "\nがいます(｀･ω･´)"
           else
             header + "誰もいません(´･ω･｀)"
           end
