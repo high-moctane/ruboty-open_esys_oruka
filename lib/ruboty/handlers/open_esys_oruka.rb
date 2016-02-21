@@ -1,4 +1,5 @@
 require "ruboty/open_esys_oruka/actions/oruka"
+require "ruboty/open_esys_oruka/actions/member_list"
 
 module Ruboty
   module Handlers
@@ -7,7 +8,13 @@ module Ruboty
       on(
         /(oruka|(お|オ)(る|ル)(か|カ))/i,
         name: 'oruka',
-        description: 'oruka?'
+        description: 'ちょっと時間かかるのは勘弁な(｀･ω･´)'
+      )
+
+      on(
+        /(list|リスト)/i,
+        name: "member_list",
+        description: "oruka コマンドで監視できるメンバーのリスト(｀･ω･´)"
       )
 
       env(:OPENESYS_ORUKA_CONF, "absolute path of config file.")
@@ -16,6 +23,9 @@ module Ruboty
         Ruboty::OpenEsysOruka::Actions::Oruka.new(message).call
       end
 
+      def member_list(message)
+        Ruboty::OpenEsysOruka::Actions::MemberList.new(message).call
+      end
     end
   end
 end
