@@ -12,7 +12,7 @@ module Ruboty
 
         private
 
-        def oruka
+        def member_list
           if (config = conf).empty?
             header +
               "おるか機能で監視できるメンバーはいません(´･ω･｀)\n"
