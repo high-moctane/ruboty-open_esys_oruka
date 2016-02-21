@@ -1,9 +1,12 @@
+require "parallel"
 require "yaml"
 
 module Ruboty
   module OpenEsysOruka
     module Actions
       class Oruka < Ruboty::Actions::Base
+        MAX_CONNECTION = 6
+
         def call
           message.reply(oruka)
         rescue => e
@@ -42,7 +45,9 @@ module Ruboty
         end
 
         def scan(list)
-          list.map { |k, v| [k, exist?(v)] }.to_h
+          Parallel.map(list, in_threads: MAX_CONNECTION) { |k, v|
+            [k, exist?(v)]
+          }.to_h
         end
       end
     end
