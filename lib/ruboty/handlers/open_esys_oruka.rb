@@ -6,13 +6,13 @@ module Ruboty
     # OpenEsys Oruka function
     class OpenEsysOruka < Base
       on(
-        /(oruka|(お|オ)(る|ル)(か|カ))/i,
+        /(oruka|(お|オ)(る|ル)(か|カ))\z/i,
         name: 'oruka',
         description: 'ちょっと時間かかるのは勘弁な(｀･ω･´)'
       )
 
       on(
-        /(list|リスト)/i,
+        /oruka (list|リスト)\z/i,
         name: "member_list",
         description: "oruka コマンドで監視できるメンバーのリスト(｀･ω･´)"
       )
