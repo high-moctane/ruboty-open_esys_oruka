@@ -18,6 +18,7 @@ module Ruboty
       )
 
       env(:OPENESYS_ORUKA_CONF, "absolute path of config file.")
+      env(:OPENESYS_ORUKA_KEY_FILE, "absolute path of key file.")
 
       def oruka(message)
         Ruboty::OpenEsysOruka::Actions::Oruka.new(message).call

@@ -1,3 +1,4 @@
+require "active_support"
 require "yaml"
 
 module Ruboty
@@ -13,7 +14,7 @@ module Ruboty
         private
 
         def oruka
-          if (result = scan(conf)).value?(true)
+          if (result = scan(member_list)).value?(true)
             header + "\n" +
               result.keep_if { |k, v| v }.keys.join("\n") +
               "\nがいます(｀･ω･´)"
@@ -44,6 +45,23 @@ module Ruboty
 
         def scan(list)
           list.map { |k, v| [k, exist?(v)] }.to_h
+        end
+
+        def secret
+          path = File.expand_path(ENV["OPENESYS_ORUKA_KEY_FILE"])
+          open(path, &:read)
+        end
+
+        def encryptor
+          ::ActiveSupport::MessageEncryptor.new(secret, cipher: "aes-256-cbc")
+        end
+
+        def decrypt(message)
+          encryptor.decrypt_and_verify(message)
+        end
+
+        def member_list
+          conf.map { |k, v| [k, decrypt(v)] }.to_h
         end
       end
     end
