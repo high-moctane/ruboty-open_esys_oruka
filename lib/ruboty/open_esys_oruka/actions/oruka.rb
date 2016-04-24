@@ -14,54 +14,45 @@ module Ruboty
         private
 
         def oruka
-          if (result = scan(member_list)).value?(true)
-            header + "\n" +
-              result.keep_if { |k, v| v }.keys.join("\n") +
-              "\nがいます(｀･ω･´)"
-          else
-            header + "誰もいません(´･ω･｀)"
+          if    valid?.! then invalid_message
+          elsif exist?   then exist_message
+          else  no_member_message
           end
-        end
-
-        def conf
-          path = File.expand_path(ENV["OPENESYS_ORUKA_CONF"])
-          YAML.load_file(path)
         end
 
         def header
-          "#{Time.now.strftime "%R:%S"} 現在、OE室には"
+          "#{table[:timestamp].strftime "%R:%S"} 現在、OE室には"
         end
 
-        def hcitool_name(btaddr)
-          `hcitool name #{btaddr}`
+        def table
+          OpenEsysOruka.table[:oru_list] ||= {
+            timestamp: nil,
+            member: [],
+          }
         end
 
-        def exist?(btaddr)
-          case hcitool_name(btaddr)
-          when "" then false
-          else true
-          end
+        def valid?
+          table[:timestamp]
         end
 
-        def scan(list)
-          list.map { |k, v| [k, exist?(v)] }.to_h
+        def exist?
+          table[:member].empty?.!
         end
 
-        def secret
-          path = File.expand_path(ENV["OPENESYS_ORUKA_KEY_FILE"])
-          open(path, &:read)
+        def invalid_message
+          "oruka refresh コマンドを実行してください(´･ω･｀)"
         end
 
-        def encryptor
-          ::ActiveSupport::MessageEncryptor.new(secret, cipher: "aes-256-cbc")
+        def exist_message
+          <<-"EOS"
+#{header}
+#{table[:member].join("\n")}
+が在室しています(｀･ω･´)
+          EOS
         end
 
-        def decrypt(message)
-          encryptor.decrypt_and_verify(message)
-        end
-
-        def member_list
-          conf.map { |k, v| [k, decrypt(v)] }.to_h
+        def no_member_message
+          "#{header}誰もいません(´･ω･｀)"
         end
       end
     end
