@@ -24,6 +24,7 @@ module Ruboty
         end
 
         def convert_time(string)
+          p string
           now = Time.now
           h, m = [string[0..1], string[2..3]].map(&:to_i)
           candidate_today    = Time.new(now.year, now.mon, now.day, h, m)
