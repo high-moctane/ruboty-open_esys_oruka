@@ -5,7 +5,6 @@ module Ruboty
     module Actions
       class Refresh < Ruboty::Actions::Base
         include ::Ruboty::OpenEsysOruka::Bluetooth
-        include ::Ruboty::OpenEsysOruka::Member
 
         def call
           # refresh
