@@ -3,9 +3,9 @@ module Ruboty
     module Actions
       class Orude < Ruboty::Actions::Base
         def call
-          message.reply(message[:exit_time].inspect)
+          message.reply(orude)
         rescue => e
-          message.reply(e.message)
+          message.reply(e.message + e.backtrace.to_s)
         end
 
         private
@@ -29,7 +29,7 @@ module Ruboty
           candidate_today    = Time.new(now.year, now.mon, now.day, h, m)
           candidate_tomorrow = candidate_today + 60 * 60 * 24
           candidate_today > now ? candidate_today : candidate_tomorrow
-        rescue ArgumentError => e
+        rescue ArgumentError
           false
         end
 
@@ -65,3 +65,5 @@ module Ruboty
     end
   end
 end
+
+
