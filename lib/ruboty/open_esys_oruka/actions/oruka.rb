@@ -8,7 +8,7 @@ module Ruboty
         def call
           message.reply(oruka)
         rescue => e
-          message.reply(e.message)
+          message.reply(e.backtrace)
         end
 
         private

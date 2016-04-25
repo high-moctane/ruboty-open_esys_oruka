@@ -7,7 +7,7 @@ module Ruboty
         def call
           refresh
         rescue => e
-          message.reply(e.message)
+          message.reply(e.backtrace)
         end
 
         private
