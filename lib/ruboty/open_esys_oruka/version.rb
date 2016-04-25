@@ -1,5 +1,5 @@
 module Ruboty
   module OpenEsysOruka
-    VERSION = "0.1.1.3"
+    VERSION = "0.1.2"
   end
 end
