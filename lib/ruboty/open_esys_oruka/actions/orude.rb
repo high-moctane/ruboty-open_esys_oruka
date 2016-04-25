@@ -5,7 +5,7 @@ module Ruboty
         def call
           message.reply(orude)
         rescue => e
-          message.reply(e.message)
+          message.reply(e.message + e.backtrace.to_s)
         end
 
         private

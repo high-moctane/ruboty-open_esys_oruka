@@ -6,6 +6,7 @@ module Ruboty
     module Actions
       class Refresh < Ruboty::Actions::Base
         def call
+          # refresh
           message.reply(refresh)
         rescue => e
           message.reply(e.message)
