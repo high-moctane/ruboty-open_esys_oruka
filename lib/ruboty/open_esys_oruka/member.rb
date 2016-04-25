@@ -9,7 +9,7 @@ module Ruboty
       end
 
       def to_s
-        "#{name}" + exit_time ? to_s_exit_time : ""
+        "#{name}" + (exit_time ? to_s_exit_time : "")
       end
 
       def exist_now?(now = Time.now)
