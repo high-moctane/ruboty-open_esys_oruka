@@ -25,7 +25,7 @@ module Ruboty
 
         def convert_time(string)
           now = Time.now
-          h, m = [string[1..2].to_i, string[3..4]].map(&:to_i)
+          h, m = [string[0..1].to_i, string[2..3]].map(&:to_i)
           candidate_today    = Time.new(now.year, now.mon, now.day, h, m)
           candidate_tomorrow = candidate_today + 60 * 60 * 24
           candidate_today > now ? candidate_today : candidate_tomorrow
