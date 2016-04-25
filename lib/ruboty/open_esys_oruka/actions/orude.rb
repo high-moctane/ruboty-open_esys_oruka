@@ -29,7 +29,7 @@ module Ruboty
           candidate_today    = Time.new(now.year, now.mon, now.day, h, m)
           candidate_tomorrow = candidate_today + 60 * 60 * 24
           candidate_today > now ? candidate_today : candidate_tomorrow
-        rescue ArgumentError
+        rescue ArgumentError => e
           false
         end
 

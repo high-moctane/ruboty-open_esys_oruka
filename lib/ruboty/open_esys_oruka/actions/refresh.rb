@@ -5,7 +5,8 @@ module Ruboty
     module Actions
       class Refresh < Ruboty::Actions::Base
         def call
-          refresh
+          # refresh
+          message.reply(refresh)
         rescue => e
           message.reply(e.backtrace)
         end
@@ -19,9 +20,10 @@ module Ruboty
               bluetooth_scan
               timestamp
             # rescue => e
-              message.reply(e.message)
+              # message.reply(e.message)
             # end
           # end
+          "powa"
         end
 
         def table
