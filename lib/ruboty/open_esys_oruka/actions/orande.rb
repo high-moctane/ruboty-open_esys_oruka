@@ -29,7 +29,7 @@ module Ruboty
         end
 
         def search_member
-          table[:member].select { |i| i.name = message[:member_name] }
+          table[:member].select { |i| i.name == message[:member_name] }
         end
 
         def exist?
@@ -37,7 +37,7 @@ module Ruboty
         end
 
         def leave
-          table[:member].delete_if { |i| i.name = message[:member_name] }
+          table[:member].delete_if { |i| i.name == message[:member_name] }
         end
 
         def success_message
