@@ -29,7 +29,7 @@ module Ruboty
         end
 
         def search_member
-          table[:member].select { |i| i.name = member_name }
+          table[:member].select { |i| i.name = message[:member_name] }
         end
 
         def exist?
@@ -37,16 +37,16 @@ module Ruboty
         end
 
         def leave
-          table[:member].delete_if { |i| i.name = member_name }
+          table[:member].delete_if { |i| i.name = message[:member_name] }
         end
 
         def success_message
-          "#{member_name} の退出処理が完了しました(｀･ω･´)"
+          "#{message[:member_name]} の退出処理が完了しました(｀･ω･´)"
         end
 
         def error_message
           <<-"EOS"
-#{member_name} はもともと在室していなかったようです(´･ω･｀)
+#{message[:member_name]} はもともと在室していなかったようです(´･ω･｀)
 もしかしたら名前が間違っているかもしれません(´･ω･｀)
           EOS
         end

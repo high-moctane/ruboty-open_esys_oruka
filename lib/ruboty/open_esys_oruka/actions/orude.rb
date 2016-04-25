@@ -34,7 +34,7 @@ module Ruboty
         end
 
         def new_member
-          ::Ruboty::OpenEsysOruka::Member.new(member_name, exit_time: convert_time(exit_time))
+          ::Ruboty::OpenEsysOruka::Member.new(message[:member_name], exit_time: convert_time(message[:exit_time]))
         end
 
         def table
