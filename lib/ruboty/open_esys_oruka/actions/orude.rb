@@ -3,7 +3,7 @@ module Ruboty
     module Actions
       class Orude < Ruboty::Actions::Base
         def call
-          message.reply(orude)
+          message.reply(message[:exit_time].inspect)
         rescue => e
           message.reply(e.message)
         end
