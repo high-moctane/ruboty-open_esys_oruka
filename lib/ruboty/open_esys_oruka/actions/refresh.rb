@@ -6,7 +6,7 @@ module Ruboty
     module Actions
       class Refresh < Ruboty::Actions::Base
         def call
-          message.reply(refresh)
+          refresh
         rescue => e
           message.reply(e.message)
         end
@@ -14,10 +14,17 @@ module Ruboty
         private
 
         def refresh
-          kick_member
-          bluetooth_scan
-          timestamp
-          "powa"
+          Thread.new do
+            begin
+              kick_member
+              bluetooth_scan
+              timestamp
+            rescue => e
+              message.reply(e.message)
+            else
+              Ruboty.logger.info("#{Time.now}\noruka refresh succeeded.")
+            end
+          end
         end
 
         def table
