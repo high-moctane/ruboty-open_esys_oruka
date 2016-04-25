@@ -38,7 +38,9 @@ module Ruboty
         end
 
         def table
-          ::Ruboty::OpenEsysOruka.table[:oru_list] ||= {
+          brain      = message.robot.brain
+          brain.data[:open_esys_oruka] ||= {}
+          brain.data[:open_esys_oruka][:oru_list] ||= {
             timestamp: nil,
             member: [],
           }
