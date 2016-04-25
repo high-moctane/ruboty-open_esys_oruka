@@ -14,15 +14,9 @@ module Ruboty
         private
 
         def refresh
-          # Thread.new do
-            # begin
-              kick_member
-              bluetooth_scan
-              timestamp
-            # rescue => e
-              # message.reply(e.message)
-            # end
-          # end
+          kick_member
+          bluetooth_scan
+          timestamp
           "powa"
         end
 

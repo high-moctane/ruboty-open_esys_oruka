@@ -33,7 +33,7 @@ module Ruboty
       )
 
       on(
-        /(oruka|おるか) refresh/i,
+        /(oruka|おるか) refresh\z/i,
         name: "refresh",
         description: "メンバーの在室状況を更新する（表示はしない）(｀･ω･´)"
       )
