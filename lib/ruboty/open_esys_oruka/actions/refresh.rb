@@ -8,7 +8,7 @@ module Ruboty
           # refresh
           message.reply(refresh)
         rescue => e
-          message.reply(e.backtrace)
+          message.reply(e.message)
         end
 
         private
