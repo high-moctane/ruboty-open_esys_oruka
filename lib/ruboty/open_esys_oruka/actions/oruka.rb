@@ -25,7 +25,7 @@ module Ruboty
         end
 
         def table
-          OpenEsysOruka.table[:oru_list] ||= {
+          ::Ruboty::OpenEsysOruka.table[:oru_list] ||= {
             timestamp: nil,
             member: [],
           }

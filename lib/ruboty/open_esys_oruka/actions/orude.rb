@@ -25,7 +25,7 @@ module Ruboty
 
         def convert_time(string)
           now = Time.now
-          h, m = string[1..2], string[3..4]
+          h, m = [string[1..2].to_i, string[3..4]].map(&:to_i)
           candidate_today    = Time.new(now.year, now.mon, now.day, h, m)
           candidate_tomorrow = candidate_today + 60 * 60 * 24
           candidate_today > now ? candidate_today : candidate_tomorrow
@@ -34,11 +34,11 @@ module Ruboty
         end
 
         def new_member
-          Member.new(member_name, exit_time: convert_time(exit_time))
+          ::Ruboty::OpenEsysOruka::Member.new(member_name, exit_time: convert_time(exit_time))
         end
 
         def table
-          OpenEsysOruka.table[:oru_list] ||= {
+          ::Ruboty::OpenEsysOruka.table[:oru_list] ||= {
             timestamp: nil,
             member: [],
           }

@@ -25,7 +25,7 @@ module Ruboty
         end
 
         def table
-          OpenEsysOruka.table[:oru_list] ||= {
+          ::Ruboty::OpenEsysOruka.table[:oru_list] ||= {
             timestamp: nil,
             member: [],
           }
@@ -36,8 +36,8 @@ module Ruboty
         end
 
         def bluetooth_scan
-          Bluetooth.exist_list.each do |name|
-            table[:member] << Member.new(name)
+          ::Ruboty::OpenEsysOruka::Bluetooth.exist_list.each do |name|
+            table[:member] << ::Ruboty::OpenEsysOruka::Member.new(name)
           end
         end
 
